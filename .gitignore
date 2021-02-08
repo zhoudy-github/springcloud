@@ -1,0 +1,6 @@
+# Project exclude paths
+/basedata/target/
+/eureka/target/
+/server-admin/target/
+/server-zipkin/target/
+/user/target/

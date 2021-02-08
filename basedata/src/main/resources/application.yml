@@ -1,0 +1,49 @@
+#服务端口
+server:
+  port: 8002
+
+#应用名称及验证账号
+spring:
+  application:
+    name: basedata
+#    admin:
+#      enabled: true
+  #向zipkin服务端进行注册
+  zipkin:
+    base-url: http://localhost:9900
+  #记录请求的百分比 1.0 == 100%
+  sleuth:
+    sampler:
+      probability: 1.0
+
+
+#注册中心
+eureka:
+  client:
+    #设置服务注册中心的URL
+    service-url:
+#      defaultZone: http://10.10.10.64:7901/eureka/,http://10.10.10.64:7900/eureka/
+      defaultZone: http://root:root@localhost:7900/eureka/
+  instance:
+    hostname: localhost
+    instance-id: basedata-8002
+
+feign:
+  compression:
+    request:
+      #      mime-types:
+      #        - text/xml
+      min-request-size: 2048
+  hystrix:
+    # feign熔断器开关
+    enabled: true
+
+#向admin展示详细信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
